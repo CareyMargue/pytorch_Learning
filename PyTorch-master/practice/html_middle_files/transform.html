@@ -1,0 +1,20 @@
+import os,shutil
+
+base_path = os.getcwd() + "\\PyTorch-master\\practice"
+
+files = [f for f in os.listdir(base_path) if os.path.isfile(os.path.join(base_path, f))]
+
+if os.path.exists(base_path + "\\html_middle_files") == True:
+    shutil.rmtree(base_path + "\\html_middle_files")
+
+os.mkdir(base_path + "\\html_middle_files")
+for file in files:
+    print("base_path",base_path+file)
+    with open(base_path + "\\" + file,"r", encoding='utf-8') as f:
+        content = f.read()
+
+    with open(base_path + "\\html_middle_files" + "\\" + file.split(".py")[0] + ".html","w", encoding='utf-8') as f:
+        f.write(content)
+
+
+        

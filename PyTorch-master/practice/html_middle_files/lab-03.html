@@ -1,0 +1,27 @@
+import torch
+import numpy as np
+
+
+lr = 0.01
+x_train = torch.FloatTensor([[1], [2], [3]])
+y_train = torch.FloatTensor([[2], [4], [6]])
+W = torch.zeros(1)
+
+
+# W = W - lr * k(斜率、梯度) 
+
+
+nb_epochs = 500
+
+for ii in range(nb_epochs + 1):
+    H = x_train * W
+
+    cost = torch.sum((H - y_train) ** 2) * (1/len(x_train))
+    cost_mean = torch.mean((H - y_train) ** 2)
+    grand = torch.sum((W*x_train - y_train) * x_train)  * (2/len(x_train))
+    print(ii,cost,grand,W)
+    
+    W -= lr * grand
+
+
+print(W)
